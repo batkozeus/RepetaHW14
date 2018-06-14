@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpack Starter Kit</title>
+</head>
+
+<body>
+
+<!-- 
+  Напишите приложение управления коллекцией кулинарных рецептов.
+  
+  Приложение состоит из:
+
+  - форма для добавления рецепта: название (input), 
+  текст (textarea), категория(select) первое/второе/салат/сладкое.
+  
+  - список рецептов, можно добавить рецепт через форму и можно 
+  удалить рецепт нажав на крестик в карточке рецепта.
+  
+  - контролы для сортировки списка рецептов по категориям,
+  к примеру показать только салаты, только второе или все сразу.
+  
+  При добавлении/удалении рецепта, необходимо сохранять коллекцию
+  в localStorage, чтобы при повторном посещении страницы
+  изначально загружались сохраненные рецепты. Также сохраните текущий
+  фильтр рецептов.
+  
+  🔔 HTML создавать динамически не нужно, важна логика и использование патернов.
+  
+  Приложение должно быть написано используя MVC: 
+  вынесите отдельно логику, отдельно представление и реакцию на действия пользователя.
+  
+  Model, View и Controller вынести в отдельные файлы и сделать классами.
+  
+  Используйте ES6 модули и Webpack для сборки. Тогда использование может выглядеть
+  следующим образом.
+-->
+
+  <div class="wrapper">
+
+    <h2>Create youur own recipe!</h2>
+    <form class="recipe-form">
+      <input class="recipe-input-title" type="text" placeholder="Name" id="recipe-title">
+      <textarea class="recipe-input-text" name="recipe-text" placeholder="Description" id="recipe-text" cols="30" rows="10"></textarea>
+      <select class="recipe-input-category" name="recipe-category" id="recipe-category">
+        <option value="category" selected disabled >category</option>
+        <option value="first-course">first-course</option>
+        <option value="second-course">second-course</option>
+        <option value="salad">salad</option>
+        <option value="dessert">dessert</option>
+      </select>
+      <button class="add-recipe-btn">Add recipe</button>
+    </form>
+    <hr>
+
+    <h3>Filter recipes</h3>
+    <ul class="recipe-filter">
+      <li>
+        <label>
+          <input type="checkbox" name="category" value="first-course" checked> first-course</label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="category" value="second-course" checked> second-course</label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="category" value="salad" checked> salad</label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="category" value="dessert" checked> dessert</label>
+      </li>
+    </ul>
+    <hr>
+
+    <div class="recipe-container"></div>
+    <hr>
+
+  </div>
+
+  
+  <!-- Шаблон одной строки для tbody -->
+  <script type="text/template" id="recipe-list">
+    <div class="recipe-item">
+      <div class="recipe-intro">
+        <h2>{{title}}</h2>
+        <h4>{{category}}</h4>
+        <button class="delete-recipe-btn" name={{title}}>Delete url</button>
+      </div>
+      <div class="recipe-descr">{{description}}</div>
+    </div>
+  </script>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js'></script>
+
+</body>
+
+</html>
